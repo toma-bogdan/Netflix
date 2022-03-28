@@ -1,0 +1,49 @@
+//Toma Bogdan-Nicolae 313CB
+//SD TEMA 2
+
+/*In main deschidem fisierele de intrare/iesire, initializam tabela hash si cozile/stivele necesare,
+ dupa care citim linie cu linie din fisier , apeland functiile specifice pentru fiecare comanda.
+ 
+ 	FUNCTIA add:
+ Cream serialul cu functia creareserial, dupa care , asemanator temei trecute, il inseram in tabela hash.
+ Nu mai avem nevoie de functie hash intrucat numarul bucket-ului este memorat in serial->ID.
+ Avem urmatoarele cazuri de inserare in liste:
+  -inserare in lista vida
+  -inserare in lista nevida( la inceput sau in mijlocul acesteia)
+  -inserare la finalul listei
+  -inserare intre seraile cu acelasi rating
+  
+ 	FUNCTIA add_sez:
+ Creaza noul sezon, fiind o coada de i episoade, apoi cauta pe rand in stiva watching , coada later , respectiv,
+in tabela hash serialul dupa numele dat.
+ Functiile add_sezS si add_sezQ sunt asemanatoare , ambele extrag un element , il compara cu key-ul dat si
+adauga sezonul in caz pozitiv, pun elementul intr-o coada/stiva auxiliara , apoi muta/rastoarna rezultatul in
+coada/stiva initala (add_sezS se afla in main, deoarece daca adaugam header-ul de la coada , intrau in conflict 
+functiile de stergere,afisare).
+ Functia add_sezTH parcurge fiecare bucket pe rand, iar in cazul in care gaseste serialul dorit adauga sezonul si
+se opreste.
+
+	FUNCTIA show:
+ Este o functie simpla de afisare a unui bucket al tabelei hash, o stiva, resrpectiv coada.
+ 
+ 	FUNCTIA add_top10:
+ Asemanatoare cu functia add, doar ca in serial->ID se retine pozitia pe care serialul o va avea in top10, iar
+atunci cand numarul serialelor depaseste 10, se elimina ultimul serial
+
+	FUNCTIA later:
+ Foloseste functia findTH pentru a extrage valoarea din tabela hash a serialului cu numele dat, apoi se 
+introduce elementul in coada, iar cu ajutorul functiei NrEQ se afiseaza pozitia elementului in coada.
+ 
+ 	FUNCTIA watch:
+ Cauta elementul in stiva, apoi coada (daca nu exista in stiva) prin functiile CautaStiva si CautaCoada, care
+functioneaza precum add_sezS si add_sezQ, doar ca atunci cand elementul este gasit se memoreaza in r si il
+returneaza dupa ce se reface stiva/coada.
+ Daca elementul nu se gaseste in stiva watching sau coada later se extrage elementul folosind functia findTH.
+ Functia watch propriu-zisa extrage un sezon din serial, dupa care se extrag episoadele si se scad din durata
+de vizionare. In cazul in care coada de sezoane devine vida se returneaza 1 si se adauga serialul in history.
+Daca durata de vizionare devine <=0 se opreste, se pune inapoi durata ramasa in sezon ,apoi sezonul in serial,
+se returneaza 0 si se introduce serialul in stiva watching.
+
+										Punctaj checker: 135/135
+										bonus: 20/20
+*/ 
